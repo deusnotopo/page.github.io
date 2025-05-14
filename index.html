@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Prático de Finanças Pessoais para Iniciantes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+        }
+        
+        .dark {
+            --primary: #6366f1;
+            --secondary: #a78bfa;
+            --accent: #fbbf24;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .hover-scale {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        .wave-shape {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        
+        .wave-shape svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 100px;
+        }
+        
+        .wave-shape .shape-fill {
+            fill: #FFFFFF;
+        }
+        
+        .dark .wave-shape .shape-fill {
+            fill: #1f2937;
+        }
+        
+        .feature-card {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+        
+        .pricing-card {
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .testimonial-card {
+            position: relative;
+        }
+        
+        .testimonial-card::after {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 80px;
+            color: rgba(79, 70, 229, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+            z-index: 0;
+        }
+        /* Removed misplaced <img> tags from <style> block */
+        .dark .testimonial-card::after {
+            color: rgba(165, 180, 252, 0.1);
+        }
+        
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: var(--primary);
+            background-color: var(--primary);
+        }
+        
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: rgba(79, 70, 229, 0.2);
+        }
+        
+        .toggle-checkbox:checked + .toggle-label::before {
+            transform: translateX(1.75rem);
+        }
+        
+        .dark .toggle-checkbox:checked + .toggle-label {
+            background-color: rgba(165, 180, 252, 0.2);
+        }
+        
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        
+        .progress-ring__circle {
+            stroke-dasharray: 314;
+            stroke-dashoffset: 314;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+        
+        .progress-ring__circle.animate {
+            animation: progress 1.5s ease-out forwards;
+        }
+        
+        @keyframes progress {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
+    <!-- Dark Mode Toggle -->
+    <div class="fixed top-4 right-4 z-50">
+        <div class="flex items-center">
+            <span class="mr-2 text-sm hidden sm:inline dark:text-yellow-300"><i class="fas fa-sun"></i></span>
+            <div class="relative inline-block w-12 mr-2 align-middle select-none">
+                <input type="checkbox" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+            </div>
+            <span class="ml-2 text-sm hidden sm:inline dark:text-blue-300"><i class="fas fa-moon"></i></span>
+    </style>
+
+    <!-- Moved <img> tags to the body section -->
+    <img src="https://bing.com/th/id/BCO.53de76d2-8f7c-45b0-8b10-e5ae64e0830f.png" 
+         alt="E-book Finanças Pessoais" 
+         class="w-full max-w-md rounded-xl shadow-2xl floating">
+    <img src="https://bing.com/th/id/BCO.53de76d2-8f7c-45b0-8b10-e5ae64e0830f.png" 
+         alt="E-book Finanças Pessoais" 
+         class="w-full max-w-md rounded-xl shadow-2xl floating">
+    <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+         alt="E-book Finanças Pessoais" 
+         class="w-full max-w-md rounded-xl shadow-2xl floating">
+    <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaW90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+         alt="E-book Finanças Pessoais" 
+         class="w-full max-w-md rounded-xl shadow-2xl floating">
+    <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+         alt="E-book Finanças Pessoais" 
+         class="w-full max-w-md rounded-xl shadow-2xl floating">
+    <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+         alt="E-book Finanças Pessoais" 
+         class="w-full max-w-md rounded-xl shadow-2xl floating">
+    </div>
+
+    <!-- Header -->
+    <header class="gradient-bg text-white relative overflow-hidden">
+        <div class="wave-shape">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+        
+        <div class="container mx-auto px-4 py-8 relative z-10">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-wallet text-2xl"></i>
+                    <span class="text-xl font-bold">Finanças Inteligentes</span>
+                </div>
+                <button class="bg-white text-blue-600 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition shadow-lg hover:shadow-xl">
+                    Compre Agora
+                </button>
+            </div>
+            
+            <div class="mt-16 md:mt-24 grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <div class="inline-block bg-white bg-opacity-20 px-4 py-1 rounded-full mb-4">
+                        <span class="text-sm font-semibold">LANÇAMENTO EXCLUSIVO</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">
+                        Domine suas finanças com nosso <span class="text-yellow-300">Guia Prático</span>
+                    </h1>
+                    <p class="text-xl mb-8">
+                        Aprenda do zero como organizar seu dinheiro, sair das dívidas e começar a investir - mesmo ganhando pouco.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-bold px-8 py-4 rounded-lg hover-scale transition shadow-lg hover:shadow-xl">
+                            <div class="flex items-center justify-center gap-2">
+                                <i class="fas fa-shopping-cart"></i>
+                                Comprar E-book - R$19
+                            </div>
+                        </button>
+                        <button class="bg-white hover:bg-gray-100 text-blue-600 font-bold px-8 py-4 rounded-lg hover-scale transition shadow-lg hover:shadow-xl">
+                            <div class="flex items-center justify-center gap-2">
+                                <i class="fas fa-play"></i>
+                                Ver Vídeo
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <div class="mt-8 flex items-center space-x-4">
+                        <div class="flex -space-x-2">
+                            <img src="https://randomuser.me/api/portraits/women/12.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="Cliente">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="Cliente">
+                            <img src="https://randomuser.me/api/portraits/women/45.jpg" class="w-10 h-10 rounded-full border-2 border-white" alt="Cliente">
+                        </div>
+                        <div>
+                            <div class="flex text-yellow-300">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="text-sm opacity-90">+2.300 downloads</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative hidden md:block">
+                    <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+                         alt="E-book Finanças Pessoais" 
+                         class="w-full max-w-md rounded-xl shadow-2xl floating">
+                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg">
+                        <div class="flex items-center gap-2">
+                            <div class="bg-green-100 p-2 rounded-full">
+                                <i class="fas fa-check text-green-600"></i>
+                            </div>
+                            <span class="font-bold text-gray-800">Garantia de 7 dias</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 scroll-indicator">
+            <i class="fas fa-chevron-down text-2xl opacity-70"></i>
+        </div>
+    </header>
+
+    <!-- Features -->
+    <section class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">O que você vai aprender</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Um guia completo com tudo que você precisa para transformar sua vida financeira
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-gray-50 dark:bg-gray-700 p-8 rounded-xl hover-scale transition">
+                    <div class="relative w-16 h-16 mb-6">
+                        <svg class="progress-ring w-16 h-16" width="120" height="120">
+                            <circle class="progress-ring__circle animate" stroke="rgba(79, 70, 229, 0.2)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
+                        </svg>
+                        <div class="absolute top-0 left-0 w-16 h-16 flex items-center justify-center">
+                            <div class="bg-blue-100 dark:bg-blue-900 w-12 h-12 rounded-full flex items-center justify-center">
+                                <i class="fas fa-chart-pie text-blue-600 dark:text-blue-300 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Orçamento Pessoal</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Aprenda a criar um orçamento realista usando a regra 50/30/20 e controle seus gastos mensais com nossa planilha exclusiva.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-gray-50 dark:bg-gray-700 p-8 rounded-xl hover-scale transition">
+                    <div class="relative w-16 h-16 mb-6">
+                        <svg class="progress-ring w-16 h-16" width="120" height="120">
+                            <circle class="progress-ring__circle animate" stroke="rgba(139, 92, 246, 0.2)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60" style="animation-delay: 0.2s"/>
+                        </svg>
+                        <div class="absolute top-0 left-0 w-16 h-16 flex items-center justify-center">
+                            <div class="bg-purple-100 dark:bg-purple-900 w-12 h-12 rounded-full flex items-center justify-center">
+                                <i class="fas fa-piggy-bank text-purple-600 dark:text-purple-300 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Sair das Dívidas</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Método passo a passo para eliminar dívidas usando a técnica da bola de neve, com exemplos reais e cálculos simplificados.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-gray-50 dark:bg-gray-700 p-8 rounded-xl hover-scale transition">
+                    <div class="relative w-16 h-16 mb-6">
+                        <svg class="progress-ring w-16 h-16" width="120" height="120">
+                            <circle class="progress-ring__circle animate" stroke="rgba(245, 158, 11, 0.2)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60" style="animation-delay: 0.4s"/>
+                        </svg>
+                        <div class="absolute top-0 left-0 w-16 h-16 flex items-center justify-center">
+                            <div class="bg-green-100 dark:bg-green-900 w-12 h-12 rounded-full flex items-center justify-center">
+                                <i class="fas fa-chart-line text-green-600 dark:text-green-300 text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Investir do Zero</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Entenda os investimentos básicos: Poupança, Tesouro Direto e CDB de forma simples, sem termos técnicos complicados.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- E-book Content -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Conteúdo do E-book</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Um guia prático com 7 passos simples para transformar suas finanças
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="space-y-4">
+                    <!-- Chapter 1 -->
+                    <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover:shadow-md transition">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 font-bold rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
+                                1
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Por que você precisa cuidar do seu dinheiro?</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mt-1">Entenda a importância da educação financeira para sua vida.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chapter 2 -->
+                    <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover:shadow-md transition">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 font-bold rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
+                                2
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Como montar um orçamento pessoal realista</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mt-1">Aprenda a regra 50/30/20 e planilha de controle mensal.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chapter 3 -->
+                    <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover:shadow-md transition">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 font-bold rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
+                                3
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Cortando gastos invisíveis</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mt-1">Identifique e elimine vazamentos no seu orçamento.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chapter 4 -->
+                    <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover:shadow-md transition">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 font-bold rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
+                                4
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Como sair das dívidas (método bola de neve)</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mt-1">Passo a passo para eliminar dívidas de forma eficiente.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chapter 5 -->
+                    <div class="faq-item bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover:shadow-md transition">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 font-bold rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
+                                5
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Criando sua reserva de emergência</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mt-1">Como começar e onde alocar seu fundo de emergência.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bonus -->
+                    <div class="bg-yellow-50 dark:bg-yellow-900 dark:bg-opacity-20 border border-yellow-200 dark:border-yellow-800 p-6 rounded-lg hover-scale transition">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 font-bold rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Bônus Exclusivos</h3>
+                                <ul class="list-disc list-inside text-gray-600 dark:text-gray-300 mt-2 space-y-1">
+                                    <li>Planilha de controle financeiro pronta para usar</li>
+                                    <li>Calendário financeiro anual</li>
+                                    <li>Modelo de "dia do acerto" mensal</li>
+                                    <li class="font-bold text-yellow-600 dark:text-yellow-300">+ Acesso a comunidade exclusiva</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <button class="gradient-bg text-white font-bold px-8 py-4 rounded-lg hover:opacity-90 transition shadow-lg hover:shadow-xl">
+                        <div class="flex items-center justify-center gap-2">
+                            <i class="fas fa-download"></i>
+                            Baixar Amostra Grátis
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">O que dizem nossos leitores</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Veja como nosso e-book está transformando vidas financeiras
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-gray-50 dark:bg-gray-700 p-6 rounded-xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Ana" class="w-12 h-12 rounded-full">
+                            <div>
+                                <h4 class="font-bold">Ana L.</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            "Finalmente consegui organizar minhas finanças! Em 3 meses já tinha minha primeira reserva de emergência. O método é simples e funciona!"
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-gray-50 dark:bg-gray-700 p-6 rounded-xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Carlos" class="w-12 h-12 rounded-full">
+                            <div>
+                                <h4 class="font-bold">Carlos R.</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            "A planilha bônus foi o que salvou meu orçamento. Nunca tinha conseguido controlar meus gastos antes. Recomendo demais!"
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-gray-50 dark:bg-gray-700 p-6 rounded-xl relative overflow-hidden">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Juliana" class="w-12 h-12 rounded-full">
+                            <div>
+                                <h4 class="font-bold">Juliana S.</h4>
+                                <div class="flex text-yellow-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            "Comprei o e-book por impulso e foi a melhor decisão! Em 6 meses saí das dívidas e comecei a investir. Linguagem super acessível."
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <button class="border-2 border-blue-500 text-blue-500 dark:text-blue-300 dark:border-blue-300 font-bold px-8 py-3 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900 dark:hover:bg-opacity-30 transition">
+                    Ver mais depoimentos
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Escolha seu pacote</h2>
+                <p class="text-lg opacity-90 max-w-2xl mx-auto">
+                    Invista no seu futuro financeiro hoje mesmo
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Basic -->
+                <div class="pricing-card bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-xl border border-white border-opacity-20 hover-scale transition">
+                    <h3 class="text-xl font-bold mb-4">E-book Básico</h3>
+                    <div class="text-4xl font-bold mb-6">R$ 19</div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle"></i>
+                            <span>E-book completo (PDF)</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Acesso imediato</span>
+                        </li>
+                        <li class="flex items-center gap-2 opacity-50">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Bônus exclusivos</span>
+                        </li>
+                        <li class="flex items-center gap-2 opacity-50">
+                            <i class="fas fa-times-circle"></i>
+                            <span>Suporte personalizado</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-white text-blue-600 font-bold py-3 rounded-lg hover:bg-gray-100 transition">
+                        Comprar Agora
+                    </button>
+                </div>
+                
+                <!-- Popular -->
+                <div class="pricing-card bg-white text-blue-900 p-8 rounded-xl shadow-xl transform hover-scale transition relative">
+                    <div class="absolute top-0 right-0 bg-yellow-400 text-blue-900 px-3 py-1 rounded-bl-lg rounded-tr-lg font-bold text-sm">
+                        MAIS POPULAR
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">E-book + Bônus</h3>
+                    <div class="text-4xl font-bold mb-6">R$ 27</div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-blue-600"></i>
+                            <span>E-book completo (PDF)</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-blue-600"></i>
+                            <span>Planilha de controle financeiro</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-blue-600"></i>
+                            <span>Calendário financeiro anual</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle text-blue-600"></i>
+                            <span>Modelo "dia do acerto"</span>
+                        </li>
+                    </ul>
+                    <button class="w-full gradient-bg text-white font-bold py-3 rounded-lg hover:opacity-90 transition">
+                        Comprar Agora
+                    </button>
+                </div>
+                
+                <!-- Premium -->
+                <div class="pricing-card bg-white bg-opacity-10 backdrop-blur-sm p-8 rounded-xl border border-white border-opacity-20 hover-scale transition">
+                    <h3 class="text-xl font-bold mb-4">E-book + Consultoria</h3>
+                    <div class="text-4xl font-bold mb-6">R$ 97</div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Tudo do pacote completo</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle"></i>
+                            <span>30 dias de suporte via WhatsApp</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Análise personalizada do seu orçamento</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Plano de ação individual</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-white text-blue-600 font-bold py-3 rounded-lg hover:bg-gray-100 transition">
+                        Comprar Agora
+                    </button>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center text-sm opacity-80">
+                <p>Garantia de 7 dias ou seu dinheiro de volta</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Perguntas Frequentes</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300">
+                    Tire suas dúvidas sobre o e-book e o processo de compra
+                </p>
+            </div>
+            
+            <div class="space-y-4">
+                <!-- Question 1 -->
+                <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                    <button onclick="toggleFAQ(1)" class="w-full flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                        <span class="font-semibold text-left">Como recebo o e-book após a compra?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-1"></i>
+                    </button>
+                    <div id="faq-content-1" class="hidden p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700">
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Imediatamente após a confirmação do pagamento, você receberá um e-mail com o link para download do e-book em PDF e dos materiais bônus. O acesso é vitalício e você pode baixar quantas vezes quiser.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Question 2 -->
+                <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                    <button onclick="toggleFAQ(2)" class="w-full flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                        <span class="font-semibold text-left">Posso comprar se não tenho experiência com finanças?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-2"></i>
+                    </button>
+                    <div id="faq-content-2" class="hidden p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700">
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Com certeza! O e-book foi feito especialmente para iniciantes. Usamos linguagem simples, exemplos práticos e tudo é explicado do zero, sem termos técnicos complicados.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Question 3 -->
+                <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                    <button onclick="toggleFAQ(3)" class="w-full flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                        <span class="font-semibold text-left">Quais as formas de pagamento?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-3"></i>
+                    </button>
+                    <div id="faq-content-3" class="hidden p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700">
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Aceitamos cartão de crédito (em até 12x), Pix, boleto bancário e PayPal. O pagamento é processado de forma segura pela Hotmart, uma das maiores plataformas de produtos digitais do mundo.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Question 4 -->
+                <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
+                    <button onclick="toggleFAQ(4)" class="w-full flex justify-between items-center p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition">
+                        <span class="font-semibold text-left">Tem garantia?</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="faq-icon-4"></i>
+                    </button>
+                    <div id="faq-content-4" class="hidden p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700">
+                        <p class="text-gray-600 dark:text-gray-300">
+                            Sim! Oferecemos garantia incondicional de 7 dias. Se por qualquer motivo você não gostar do material, basta nos enviar um e-mail que devolvemos 100% do seu dinheiro, sem questionamentos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-gray-900 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6">Pronto para transformar sua vida financeira?</h2>
+                <p class="text-xl mb-8">
+                    Comece hoje mesmo sua jornada rumo à independência financeira. Aproveite o preço promocional de lançamento!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-lg hover-scale transition shadow-lg hover:shadow-xl">
+                        <div class="flex items-center justify-center gap-2">
+                            <i class="fas fa-shopping-cart"></i>
+                            Comprar E-book - R$19
+                        </div>
+                    </button>
+                    <button class="bg-white hover:bg-gray-100 text-gray-900 font-bold px-8 py-4 rounded-lg hover-scale transition shadow-lg hover:shadow-xl">
+                        <div class="flex items-center justify-center gap-2">
+                            <i class="fas fa-question-circle"></i>
+                            Tire suas dúvidas
+                        </div>
+                    </button>
+                </div>
+                
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    <div class="flex items-center gap-2 bg-white bg-opacity-10 px-4 py-2 rounded-full">
+                        <i class="fas fa-lock"></i>
+                        <span class="text-sm">Pagamento seguro</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white bg-opacity-10 px-4 py-2 rounded-full">
+                        <i class="fas fa-shield-alt"></i>
+                        <span class="text-sm">Garantia de 7 dias</span>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white bg-opacity-10 px-4 py-2 rounded-full">
+                        <i class="fas fa-headset"></i>
+                        <span class="text-sm">Suporte 24h</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fas fa-wallet text-2xl text-blue-400"></i>
+                        <span class="text-xl font-bold text-white">Finanças Inteligentes</span>
+                    </div>
+                    <p class="mb-4">
+                        Educação financeira simples e acessível para todos.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-whatsapp text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-telegram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">Links Úteis</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> Página de Vendas</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> Política de Privacidade</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> Termos de Uso</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">Suporte</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> Central de Ajuda</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> contato@financasinteligentes.com</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> Reembolsos</a></li>
+                        <li><a href="#" class="hover:text-white transition flex items-center gap-2"><i class="fas fa-chevron-right text-xs"></i> Dúvidas Frequentes</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-bold mb-4">Formas de Pagamento</h4>
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="bg-gray-700 p-3 rounded flex items-center justify-center hover:bg-gray-600 transition">
+                            <i class="fab fa-cc-visa text-2xl"></i>
+                        </div>
+                        <div class="bg-gray-700 p-3 rounded flex items-center justify-center hover:bg-gray-600 transition">
+                            <i class="fab fa-cc-mastercard text-2xl"></i>
+                        </div>
+                        <div class="bg-gray-700 p-3 rounded flex items-center justify-center hover:bg-gray-600 transition">
+                            <i class="fas fa-barcode text-2xl"></i>
+                        </div>
+                        <div class="bg-gray-700 p-3 rounded flex items-center justify-center hover:bg-gray-600 transition">
+                            <i class="fab fa-paypal text-2xl"></i>
+                        </div>
+                        <div class="bg-gray-700 p-3 rounded flex items-center justify-center hover:bg-gray-600 transition">
+                            <span class="font-bold">PIX</span>
+                        </div>
+                        <div class="bg-gray-700 p-3 rounded flex items-center justify-center hover:bg-gray-600 transition">
+                            <i class="fab fa-cc-amex text-2xl"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h4 class="text-white font-bold mb-2">Certificados</h4>
+                        <div class="flex items-center gap-2">
+                            <img src="https://via.placeholder.com/80x30?text=SSL" alt="SSL" class="h-6">
+                            <img src="https://via.placeholder.com/80x30?text=Hotmart" alt="Hotmart" class="h-6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
+                <p>© 2023 Finanças Inteligentes. Todos os direitos reservados.</p>
+                <p class="mt-2">CNPJ: 12.345.678/0001-99</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle
+        const toggle = document.getElementById('toggle');
+        const body = document.body;
+        
+        // Check for saved user preference or use system preference
+        if (localStorage.getItem('darkMode') === 'true' || 
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            body.classList.add('dark');
+            toggle.checked = true;
+        }
+        
+        // Toggle dark mode
+        toggle.addEventListener('change', function() {
+            if (this.checked) {
+                body.classList.add('dark');
+                localStorage.setItem('darkMode', 'true');
+            } else {
+                body.classList.remove('dark');
+                localStorage.setItem('darkMode', 'false');
+            }
+        });
+        
+        // FAQ toggle function
+        function toggleFAQ(id) {
+            const content = document.getElementById(`faq-content-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+            
+            content.classList.toggle('hidden');
+            icon.classList.toggle('transform');
+            icon.classList.toggle('rotate-180');
+        }
+        
+        // Animate progress rings when in viewport
+        function animateProgressRings() {
+            const rings = document.querySelectorAll('.progress-ring__circle');
+            
+            rings.forEach(ring => {
+                const rect = ring.getBoundingClientRect();
+                const isVisible = (rect.top <= window.innerHeight && rect.bottom >= 0);
+                
+                if (isVisible && !ring.classList.contains('animate')) {
+                    ring.classList.add('animate');
+                }
+            });
+        }
+        
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Floating animation for ebook image
+            const ebookImage = document.querySelector('.floating');
+            if (ebookImage) {
+                ebookImage.style.animation = 'floating 6s ease-in-out infinite';
+            }
+            
+            // Animate progress rings on scroll
+            window.addEventListener('scroll', animateProgressRings);
+            animateProgressRings(); // Run once on load
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
